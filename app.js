@@ -1,8 +1,10 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const app = express();
+const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3001;
 
 //API security
@@ -10,6 +12,14 @@ app.use(helmet());
 
 //Handle cors error
 app.use(cors());
+
+//MongoDB Connection
+await mongoose.connect(process.env.MONGO_DB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+});
 
 //Logs each request
 app.use(morgan("tiny"));
