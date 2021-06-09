@@ -1,7 +1,7 @@
-const {Test} = "./User_schema.js"
+const User = require('./User_schema')
 
 const insertUser = (userObj) => {
-  Test(userObj)
+  User(userObj)
     .save()
     .then((data) => console.log(data))
     .catch((error) => console.log(error));
