@@ -1,6 +1,7 @@
 const express = require("express");
 const { route } = require("./unit_router");
 const router = express.Router()
+const {insertUser} = require('../model/User_model')
 
 router.all("/", (req, res, next) => {
     
@@ -10,7 +11,9 @@ router.all("/", (req, res, next) => {
 
 })
 
-router.post('/', (req, res) => {
-    res.json(req.body);
+router.post('/', async(req, res) => {
+    const result = await insertUser(req.body);
+    console.log(result);
+    res.json({message: "new user created!", result});
 })
 module.exports = router;
