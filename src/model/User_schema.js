@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: Number,
     min: [7, "Must be at least 7 digits. Was given {VALUE}"],
-    max: 11,
+    maxLength: 11,
   },
   email: {
     type: String,
@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     min: [8, "Must have at least 8 characters"],
-    max: 100,
+    maxLength: 100,
     required: [true, "Please enter password."],
   },
 });
