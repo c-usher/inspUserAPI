@@ -14,15 +14,26 @@ app.use(helmet());
 app.use(cors());
 
 //MongoDB Connection
-await mongoose.connect(process.env.MONGO_DB, {
+mongoose.connect(process.env.MONGO_DB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true,
 });
 
-//Logs each request
-app.use(morgan("tiny"));
+if (process.env.NODE_ENV !== "production") {
+  const mDb = mongoose.connection;
+  mDb.on("open", () => {
+    console.log("MongoDB is connected");
+  });
+
+  mDb.on("error", (error) => {
+    console.log(error);
+  });
+
+  //Logs each request
+  app.use(morgan("tiny"));
+}
 
 //Set body parser
 app.use(express.urlencoded({ extended: true }));
