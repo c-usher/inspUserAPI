@@ -21,19 +21,21 @@ mongoose.connect(process.env.MONGO_DB, {
   useCreateIndex: true,
 });
 
-if (process.env.NODE_ENV !== "production") {
-  const mDb = mongoose.connection;
-  mDb.on("open", () => {
+if (process.env.NODE_ENV !== 'production') {
+    const mDb = mongoose.connection
+    mDb.on("open", () => {
     console.log("MongoDB is connected");
-  });
+});
 
-  mDb.on("error", (error) => {
-    console.log(error);
-  });
+mDb.on("error", (error) => {
+  console.log(error);
+});
 
-  //Logs each request
-  app.use(morgan("tiny"));
+//Logs each request
+app.use(morgan("tiny"));
+
 }
+
 
 //Set body parser
 app.use(express.urlencoded({ extended: true }));

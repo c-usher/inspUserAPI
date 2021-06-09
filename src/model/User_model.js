@@ -1,7 +1,7 @@
-const {UserSchema} = "./User_schema.js"
+const {Test} = "./User_schema.js"
 
 const insertUser = (userObj) => {
-  UserSchema(userObj)
+  Test(userObj)
     .save()
     .then((data) => console.log(data))
     .catch((error) => console.log(error));
