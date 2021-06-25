@@ -53,7 +53,7 @@ app.use("/unit", unitRouter);
 const handleError = require("./src/utils/error_handler");
 
 app.use((req, res, next) => {
-  const error = new Error("Route not found!");
+  const error = new Error("Resources not found!");
   error.status = 404;
   next(error);
 });
