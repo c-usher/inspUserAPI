@@ -1,10 +1,13 @@
 const User = require('./User_schema')
 
 const insertUser = (userObj) => {
-  User(userObj)
+  return new Promise((resolve, reject) => {
+     User(userObj)
     .save()
-    .then((data) => console.log(data))
-    .catch((error) => console.log(error));
+    .then(data => resolve(data))
+    .catch(error => reject(error));
+  })
+ 
 };
 
 module.exports = {
