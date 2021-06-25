@@ -1,0 +1,20 @@
+### User sign up endpoint
+POST http://localhost:3001/user/create
+Content-Type: application/json
+
+{
+    "name": "Test",
+    "phone": 1234567,
+    "email": "test1011@test.com",
+    "password":"Test2222!"
+
+}
+
+### User sign in endpoint
+POST http://localhost:3001/user/login
+Content-Type: application/json
+
+{
+    "email": "test10@test.com",
+    "password":"Test2222!"
+}

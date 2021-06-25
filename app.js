@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3001;
 
 //API security
-app.use(helmet());
+//app.use(helmet());
 
 //Handle cors error
 app.use(cors());
@@ -46,7 +46,7 @@ const userRouter = require("./src/routers/user_router");
 const unitRouter = require("./src/routers/unit_router");
 
 //Use routers
-app.use("/login/user", userRouter);
+app.use("/user", userRouter);
 app.use("/unit", unitRouter);
 
 //Handle error
