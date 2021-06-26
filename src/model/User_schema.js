@@ -22,6 +22,18 @@ const userSchema = new mongoose.Schema({
     maxLength: 100,
     required: [true, "Please enter password."],
   },
+  refreshJWT: {
+    token: {
+      type: String,
+      maxLength: 666,
+      default: ''
+    },
+    addedAt: {
+      type: Date,
+      required: true,
+      default: Date.now(),
+    }
+  }
 });
 
 const User = mongoose.model("User", userSchema);
