@@ -6,23 +6,22 @@ client.on("error", function (error) {
 });
 
 const setJWT = (key, value) => {
-    return new Promise((resolve, reject) => {
-      try {
-          client.set(key, value, (error, response) => {
-            if (error) reject(error);
-            resolve(response);
-          });
-      } catch (error) {
-          reject(error)
-      }
- 
+  return new Promise((resolve, reject) => {
+    try {
+      client.set(key, value, (error, response) => {
+        if (error) reject(error);
+        resolve(response);
+      });
+    } catch (error) {
+      reject(error);
+    }
   });
 };
 
 const getJWT = (key) => {
   return new Promise((resolve, reject) => {
     try {
-      client.get("key", (error, response) => {
+      client.get(key, (error, response) => {
         if (error) reject(error);
         resolve(response);
       });
@@ -33,5 +32,6 @@ const getJWT = (key) => {
 };
 
 module.exports = {
-    setJWT, getJWT
-}
+  setJWT,
+  getJWT,
+};

@@ -1,10 +1,10 @@
 const express = require("express");
 const { route } = require("./unit_router");
 const router = express.Router();
-const { insertUser, getUserByEmail } = require("../model/User_model");
+const { insertUser, getUserByEmail, getUserById } = require("../model/User_model");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt_helper");
 const { createAccessJWT, createRefreshJWT } = require("../helpers/jwt_helper");
-const { json } = require("body-parser");
+const { userAuthorization } = require("../middleware/authorization_middleware");
 
 router.all("/", (req, res, next) => {
   // res.json({ message: "this message is from user router" })
@@ -12,6 +12,12 @@ router.all("/", (req, res, next) => {
   next();
 });
 
+//Get user profile route
+router.get('/', userAuthorization, async (req, res) => {
+  const _id = req.userId;
+  const userProfile = await getUserById(_id)
+  res.json({user: userProfile});
+})
 //Create new user route
 router.post("/create", async (req, res) => {
   const { name, phone, email, password } = req.body;
@@ -65,5 +71,8 @@ router.post("/login", async (req, res) => {
     refreshJWT,
   });
 });
+
+
+
 
 module.exports = router;
