@@ -44,10 +44,12 @@ app.use(express.json());
 //Load routers
 const userRouter = require("./src/routers/user_router");
 const unitRouter = require("./src/routers/unit_router");
+const tokensRouter = require("./src/routers/tokens_router");
 
 //Use routers
 app.use("/user", userRouter);
 app.use("/unit", unitRouter);
+app.use("/tokens", tokensRouter);
 
 //Handle error
 const handleError = require("./src/utils/error_handler");
