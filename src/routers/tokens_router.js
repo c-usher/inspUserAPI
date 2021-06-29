@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { verifyRefreshJWT, createAccessJWT } = require("../helpers/jwt_helper");
-const { getUserByEmail } = require("../model/User_model");
+const { getUserByEmail } = require("../model/user/User_model");
 
 router.get("/", async (req, res, next) => {
   const { authorization } = req.headers;

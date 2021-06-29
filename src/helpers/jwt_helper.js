@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { setJWT, getJWT } = require("./redis_helper");
-const { storeUserRefreshJWT } = require("../model/User_model");
+const { storeUserRefreshJWT } = require("../model/user/User_model");
 
 const createAccessJWT = async (email, _id) => {
   try {
