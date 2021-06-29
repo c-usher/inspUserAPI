@@ -1,5 +1,5 @@
 const { verifyAccessJWT } = require("../helpers/jwt_helper");
-const { getJWT } = require("../helpers/redis_helper");
+const { getJWT, delJWT } = require("../helpers/redis_helper");
 
 const userAuthorization = async (req, res, next) => {
   const { authorization } = req.headers;
@@ -15,6 +15,9 @@ const userAuthorization = async (req, res, next) => {
     req.userId = userId;
     return next();
   }
+
+  delJWT(authorization);
+
   return res.status(403).json({ message: "Forbidden" });
 };
 

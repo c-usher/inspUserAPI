@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ### Get user profile endpoint
 GET http://localhost:3001/user
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMDExQHRlc3QuY29tIiwiaWF0IjoxNjI0OTIxNzk0LCJleHAiOjE2MjQ5MjI2OTR9.oTg6_JFqmaxBvj2wf9bbRPmILuV7iiR5VYzch8ITzlc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMDExQHRlc3QuY29tIiwiaWF0IjoxNjI0OTI2MDQ3LCJleHAiOjE2MjQ5MjYxMDd9.R9NbOXQ45Txgdxq5e9DkK91ugQdqx12qUCNDG3uIbiE
 
 ### Token Routers
 
