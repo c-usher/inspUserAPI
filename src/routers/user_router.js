@@ -34,7 +34,6 @@ router.post("/create", async (req, res) => {
     };
 
     const result = await insertUser(newUserObj);
-    console.log(result);
     res.json({ message: "new user created!", result });
   } catch (error) {
     console.log(error);
