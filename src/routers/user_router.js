@@ -10,6 +10,7 @@ const { hashPassword, comparePassword } = require("../helpers/bcrypt_helper");
 const { createAccessJWT, createRefreshJWT } = require("../helpers/jwt_helper");
 const { userAuthorization } = require("../middleware/authorization_middleware");
 const { setPassResetPin } = require("../model/reset_pin/Reset_Pin_model");
+const { emailProcessor } = require("../helpers/email_helper");
 
 router.all("/", (req, res, next) => {
   // res.json({ message: "this message is from user router" })
@@ -84,7 +85,17 @@ router.post("/reset-password", async (req, res) => {
 
   if (user && user._id) {
     const setPin = await setPassResetPin(email);
-    return res.json(setPin);
+    const result = await emailProcessor(email, setPin.pin);
+    if (result && result.messageId) {
+      return res.json({
+        status: "Success",
+        message: "A reset pin is on its way!",
+      });
+    }
+    return res.json({
+      status: "Success",
+      message: "A reset pin is on its way!",
+    });
   }
 
   res.json({ status: "error", message: "A reset pin is on its way!" });
