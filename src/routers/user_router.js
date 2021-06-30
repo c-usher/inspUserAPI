@@ -1,7 +1,11 @@
 const express = require("express");
 const { route } = require("./unit_router");
 const router = express.Router();
-const { insertUser, getUserByEmail, getUserById } = require("../model/user/User_model");
+const {
+  insertUser,
+  getUserByEmail,
+  getUserById,
+} = require("../model/user/User_model");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt_helper");
 const { createAccessJWT, createRefreshJWT } = require("../helpers/jwt_helper");
 const { userAuthorization } = require("../middleware/authorization_middleware");
@@ -14,11 +18,11 @@ router.all("/", (req, res, next) => {
 });
 
 //Get user profile route
-router.get('/', userAuthorization, async (req, res) => {
+router.get("/", userAuthorization, async (req, res) => {
   const _id = req.userId;
-  const userProfile = await getUserById(_id)
-  res.json({user: userProfile});
-})
+  const userProfile = await getUserById(_id);
+  res.json({ user: userProfile });
+});
 
 //Create new user route
 router.post("/create", async (req, res) => {
@@ -73,21 +77,17 @@ router.post("/login", async (req, res) => {
   });
 });
 
-router.post('/reset-password', async (req, res) => {
+router.post("/reset-password", async (req, res) => {
   const { email } = req.body;
-  
+
   const user = await getUserByEmail(email);
 
   if (user && user._id) {
     const setPin = await setPassResetPin(email);
-    return res.json(setPin)
+    return res.json(setPin);
   }
 
-
-  res.json({status: "error", message: "A reset pin is on its way!"});
-})
-
-
-
+  res.json({ status: "error", message: "A reset pin is on its way!" });
+});
 
 module.exports = router;

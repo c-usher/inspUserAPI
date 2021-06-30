@@ -26,14 +26,14 @@ const userSchema = new mongoose.Schema({
     token: {
       type: String,
       maxLength: 666,
-      default: ''
+      default: "",
     },
     addedAt: {
       type: Date,
       required: true,
       default: Date.now(),
-    }
-  }
+    },
+  },
 });
 
 const User = mongoose.model("User", userSchema);

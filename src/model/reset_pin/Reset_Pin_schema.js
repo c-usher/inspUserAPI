@@ -10,9 +10,9 @@ const ResetPinSchema = new mongoose.Schema({
     type: String,
     maxLength: 50,
     required: true,
-  }
+  },
 });
 
 module.exports = {
-  ResetPinSchema: mongoose.model("Reset_Pin", ResetPinSchema)
+  ResetPinSchema: mongoose.model("Reset_Pin", ResetPinSchema),
 };

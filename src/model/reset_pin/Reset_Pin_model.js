@@ -1,6 +1,6 @@
 const token = require("morgan");
 const { randomPinNumber } = require("../../utils/random_generator");
-const {ResetPinSchema} = require("./Reset_Pin_schema");
+const { ResetPinSchema } = require("./Reset_Pin_schema");
 
 const setPassResetPin = async (email) => {
   const pinLength = 6;
