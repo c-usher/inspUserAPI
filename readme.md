@@ -2,9 +2,12 @@
 
 ### User Routes
 
-    /user - Get
-    /user/create - Post
-    /user/login - Post
+    /user - GET
+    /user/create - POST
+    /user/login - POST
+    /user/reset-password - POST
+    /user/reset-password - PATCH
+    /user/logout - DELETE
 
 ### Unit Routes
 

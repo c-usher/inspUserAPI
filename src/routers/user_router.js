@@ -5,6 +5,7 @@ const {
   getUserByEmail,
   getUserById,
   updatePassword,
+  storeUserRefreshJWT,
 } = require("../model/user/User_model");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt_helper");
 const { createAccessJWT, createRefreshJWT } = require("../helpers/jwt_helper");
@@ -19,12 +20,13 @@ const {
   resetPassReqValidation,
   updatePassValidation,
 } = require("../middleware/form_validation_middleware");
+const { delJWT } = require("../helpers/redis_helper");
 
-// router.all("/", (req, res, next) => {
-//   // res.json({ message: "this message is from user router" })
+router.all("/", (req, res, next) => {
+  res.json({ message: "this message is from user router" });
 
-//   next();
-// });
+  next();
+});
 
 //Get user profile route
 router.get("/", userAuthorization, async (req, res) => {
@@ -86,6 +88,7 @@ router.post("/login", async (req, res) => {
   });
 });
 
+//Reset password route
 router.post("/reset-password", resetPassReqValidation, async (req, res) => {
   const { email } = req.body;
 
@@ -110,6 +113,7 @@ router.post("/reset-password", resetPassReqValidation, async (req, res) => {
   });
 });
 
+//Password update route
 router.patch("/reset-password", updatePassValidation, async (req, res) => {
   const { email, pin, newPassword } = req.body;
   const getPin = await getPinByEmail(email, pin);
@@ -138,6 +142,25 @@ router.patch("/reset-password", updatePassValidation, async (req, res) => {
     }
   }
   res.json({ status: "error", message: "Unable to update your password!" });
+});
+
+//Logout route
+router.delete("/logout", userAuthorization, async (req, res) => {
+  const { authorization } = req.headers;
+  const _id = req.userId;
+  delJWT(authorization);
+  const result = await storeUserRefreshJWT(_id, "");
+
+  if (result._id) {
+    return res.json({
+      success: "success",
+      message: "Logged out successfully!",
+    });
+  }
+  res.json({
+    success: "error",
+    message: "Unable to log you out...",
+  });
 });
 
 module.exports = router;
