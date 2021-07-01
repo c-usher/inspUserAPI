@@ -43,6 +43,6 @@ Content-Type: application/json
 
 {
     "email": "test1011@test.com",
-    "pin": 844731,
+    "pin": 190490,
     "newPassword":"pass123"
 }

@@ -15,6 +15,10 @@ const {
   delPin,
 } = require("../model/reset_pin/Reset_Pin_model");
 const { emailProcessor } = require("../helpers/email_helper");
+const {
+  resetPassReqValidation,
+  updatePassValidation,
+} = require("../middleware/form_validation_middleware");
 
 router.all("/", (req, res, next) => {
   // res.json({ message: "this message is from user router" })
@@ -82,7 +86,7 @@ router.post("/login", async (req, res) => {
   });
 });
 
-router.post("/reset-password", async (req, res) => {
+router.post("/reset-password", resetPassReqValidation, async (req, res) => {
   const { email } = req.body;
 
   const user = await getUserByEmail(email);
@@ -106,9 +110,9 @@ router.post("/reset-password", async (req, res) => {
   });
 });
 
-router.patch("/reset-password", async (req, res) => {
+router.patch("/reset-password", updatePassValidation, async (req, res) => {
   const { email, pin, newPassword } = req.body;
-  const getPin = await getPinByEmail(email, pin);
+  const getPin = await getPinByEmail({ email, pin: pin });
   if (getPin._id) {
     const dbPinDate = getPin.addedAt;
     const expTime = 1;
