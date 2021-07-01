@@ -15,7 +15,7 @@ Content-Type: application/json
 
 {
     "email": "test1011@test.com",
-    "password":"Test2222!"
+    "password":"pass123"
 }
 
 ### Get user profile endpoint
@@ -29,10 +29,20 @@ GET http://localhost:3001/tokens
 Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMDExQHRlc3QuY29tIiwiaWF0IjoxNjI0OTIyODE5LCJleHAiOjE2Mjc1MTQ4MTl9.o6Lnso-ySGXZ6XIk5YWYGL176sOt1uKJ1AjNMFFQ_HA
 
 
-### Password reset endpoints
+### Password reset request endpoint
 POST http://localhost:3001/user/reset-password
 Content-Type: application/json
 
 {
     "email": "test1011@test.com"
+}
+
+### Update password endpoint
+PATCH http://localhost:3001/user/reset-password
+Content-Type: application/json
+
+{
+    "email": "test1011@test.com",
+    "pin": 844731,
+    "newPassword":"pass123"
 }
