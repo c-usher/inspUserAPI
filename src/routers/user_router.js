@@ -20,11 +20,11 @@ const {
   updatePassValidation,
 } = require("../middleware/form_validation_middleware");
 
-router.all("/", (req, res, next) => {
-  // res.json({ message: "this message is from user router" })
+// router.all("/", (req, res, next) => {
+//   // res.json({ message: "this message is from user router" })
 
-  next();
-});
+//   next();
+// });
 
 //Get user profile route
 router.get("/", userAuthorization, async (req, res) => {
@@ -112,7 +112,7 @@ router.post("/reset-password", resetPassReqValidation, async (req, res) => {
 
 router.patch("/reset-password", updatePassValidation, async (req, res) => {
   const { email, pin, newPassword } = req.body;
-  const getPin = await getPinByEmail({ email, pin: pin });
+  const getPin = await getPinByEmail(email, pin);
   if (getPin._id) {
     const dbPinDate = getPin.addedAt;
     const expTime = 1;
