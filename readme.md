@@ -13,4 +13,4 @@
 
     /units - POST
     /units - GET
-    /units/u{id} - Get
+    /units/unit/{id} - Get
