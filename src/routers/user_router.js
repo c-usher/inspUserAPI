@@ -23,8 +23,6 @@ const {
 const { delJWT } = require("../helpers/redis_helper");
 
 router.all("/", (req, res, next) => {
-  res.json({ message: "this message is from user router" });
-
   next();
 });
 

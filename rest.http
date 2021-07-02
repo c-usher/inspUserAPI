@@ -20,13 +20,13 @@ Content-Type: application/json
 
 ### Get user profile endpoint
 GET http://localhost:3001/user
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMDExQHRlc3QuY29tIiwiaWF0IjoxNjI1MTA2ODU3LCJleHAiOjE2MjUxMDc3NTd9.q1AeK6EPPlQLsL9PsOjtQUcqaKFUzhoPVO1c7C3M5MY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMDExQHRlc3QuY29tIiwiaWF0IjoxNjI1MTg3Nzg2LCJleHAiOjE2MjUxODg2ODZ9.Oj7ogSPa7vrjjNJshln_j4ELnlHK9A1gNLNJ09FMmAs
 
 ### Token Routers
 
 ### Get refresh token
 GET http://localhost:3001/tokens
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMDExQHRlc3QuY29tIiwiaWF0IjoxNjI1MTA2ODU3LCJleHAiOjE2Mjc2OTg4NTd9.0DcnXiU6OEKPlJ3a_mGemaBDv-_rImDdLtHiZ05xZS8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMDExQHRlc3QuY29tIiwiaWF0IjoxNjI1MTg3Nzg2LCJleHAiOjE2Mjc3Nzk3ODZ9.IdDBd_fo8PlUFwF-H5VrHF4ee5KtP6XF6Ch34fODs54
 
 
 ### Password reset request endpoint
@@ -49,4 +49,4 @@ Content-Type: application/json
 
 ### Logout endpoint
 DELETE http://localhost:3001/user/logout
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMDExQHRlc3QuY29tIiwiaWF0IjoxNjI1MTA5MDgxLCJleHAiOjE2MjUxMDk5ODF9.ZRbItTfMlDQAEGGUFGwfK2jMbwX5WY5KmbxFogWBbUc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMDExQHRlc3QuY29tIiwiaWF0IjoxNjI1MTg3Nzg2LCJleHAiOjE2MjUxODg2ODZ9.Oj7ogSPa7vrjjNJshln_j4ELnlHK9A1gNLNJ09FMmAs
