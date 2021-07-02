@@ -55,9 +55,30 @@ const updatePrefs = ({ _id, pref, prefAddedBy }) => {
   });
 };
 
+const updateNotes = ({ _id, note, noteAddedBy }) => {
+  return new Promise((resolve, reject) => {
+    try {
+      UnitSchema.findOneAndUpdate(
+        { _id },
+
+        {
+          noteStatus: false,
+          $push: { notes: { note, noteAddedBy } },
+        },
+        { new: true }
+      )
+        .then((data) => resolve(data))
+        .catch((error) => reject(error));
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 module.exports = {
   addUnit,
   getUnits,
   getUnitById,
   updatePrefs,
+  updateNotes,
 };

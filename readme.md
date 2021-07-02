@@ -14,7 +14,8 @@
     /units - POST
     /units - GET
     /units/unit/{id} - GET
-    /units/unit/{id} - PUT
+    /units/unit/prefs/{id} - PUT
+    /units/unit/notes/{id} - PUT
 
 ### TODO:
 
