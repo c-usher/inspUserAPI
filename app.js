@@ -46,7 +46,7 @@ const tokensRouter = require("./src/routers/tokens_router");
 
 //Use routers
 app.use("/user", userRouter);
-app.use("/unit", unitRouter);
+app.use("/units", unitRouter);
 app.use("/tokens", tokensRouter);
 
 //Handle error

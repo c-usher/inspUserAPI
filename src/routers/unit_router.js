@@ -1,6 +1,6 @@
 const express = require("express");
 const { userAuthorization } = require("../middleware/authorization_middleware");
-const { addUnit, getUnits } = require("../model/unit/Unit_model");
+const { addUnit, getUnits, getUnitById } = require("../model/unit/Unit_model");
 const router = express.Router();
 
 router.all("/", (req, res, next) => {
@@ -45,7 +45,6 @@ router.post("/", userAuthorization, async (req, res) => {
         },
       ],
     };
-    console.log(unitObj);
 
     const result = await addUnit(unitObj);
     if (result._id) {
@@ -63,8 +62,24 @@ router.post("/", userAuthorization, async (req, res) => {
 // *Get units
 router.get("/", userAuthorization, async (req, res) => {
   try {
-    const userId = req.userID;
-    const result = await getUnits(userId);
+    const clientId = req.userId;
+    const result = await getUnits(clientId);
+
+    return res.json({
+      status: "success",
+      result,
+    });
+  } catch (error) {
+    res.json({ status: "error", message: error.message });
+  }
+});
+
+// *Get unit
+router.get("/unit/:_id", userAuthorization, async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const clientId = req.userId;
+    const result = await getUnitById(_id, clientId);
 
     return res.json({
       status: "success",

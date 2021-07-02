@@ -11,5 +11,6 @@
 
 ### Unit Routes
 
-    /unit - POST
-    /unit - GET
+    /units - POST
+    /units - GET
+    /units/u{id} - Get
