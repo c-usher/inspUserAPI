@@ -1,8 +1,8 @@
-const User = require("./User_schema");
+const { UserSchema } = require("./User_schema");
 
 const insertUser = (userObj) => {
   return new Promise((resolve, reject) => {
-    User(userObj)
+    UserSchema(userObj)
       .save()
       .then((data) => resolve(data))
       .catch((error) => reject(error));
@@ -13,7 +13,7 @@ const getUserByEmail = (email) => {
   return new Promise((resolve, reject) => {
     try {
       if (!email) return false;
-      User.findOne({ email }, (error, data) => {
+      UserSchema.findOne({ email }, (error, data) => {
         if (error) {
           reject(error);
         } else {
@@ -46,7 +46,7 @@ const getUserById = (_id) => {
 const storeUserRefreshJWT = (_id, token) => {
   return new Promise((resolve, reject) => {
     try {
-      User.findOneAndUpdate(
+      UserSchema.findOneAndUpdate(
         { _id }, //First object is filter
         {
           $set: { "refreshJWT.token": token, "refreshJWT.addedAt": Date.now() }, //$set is database prefix
@@ -67,7 +67,7 @@ const storeUserRefreshJWT = (_id, token) => {
 const updatePassword = (email, newHashedPass) => {
   return new Promise((resolve, reject) => {
     try {
-      User.findOneAndUpdate(
+      UserSchema.findOneAndUpdate(
         { email }, //First object is filter
         {
           $set: { password: newHashedPass }, //$set is database prefix

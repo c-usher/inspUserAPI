@@ -1,15 +1,16 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const UnitSchema = new mongoose.Schema({
   clientId: {
     type: Schema.Types.ObjectId,
   },
-  addedAt: {
+  unitAddedAt: {
     type: Date,
     required: true,
     default: Date.now(),
   },
-  addedBy: {
+  unitAddedBy: {
     type: String,
     maxLength: 50,
     required: [true, "Author is needed."],
@@ -29,33 +30,39 @@ const UnitSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
-  ownerPreferences: [
+  managedStatus: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  ownerPrefs: [
     {
-      addedAt: {
+      prefAddedAt: {
         type: Date,
         required: true,
         default: Date.now(),
       },
-      addedBy: {
+      prefAddedBy: {
         type: String,
         maxLength: 50,
         required: [true, "Author is needed."],
       },
-      preference: {
+      pref: {
         type: String,
         maxLength: 1000,
         required: [true, "Preference is needed."],
+        default: "",
       },
     },
   ],
   notes: [
     {
-      addedAt: {
+      noteAddedAt: {
         type: Date,
         required: true,
         default: Date.now(),
       },
-      addedBy: {
+      noteAddedBy: {
         type: String,
         maxLength: 50,
         required: [true, "Author is needed."],
@@ -64,8 +71,9 @@ const UnitSchema = new mongoose.Schema({
         type: String,
         maxLength: 1000,
         required: [true, "Note is needed."],
+        default: "",
       },
-      status: {
+      noteStatus: {
         type: Boolean,
         required: true,
         default: false,
@@ -74,6 +82,4 @@ const UnitSchema = new mongoose.Schema({
   ],
 });
 
-const User = mongoose.model("User", userSchema);
-
-module.exports = User;
+module.exports = { UnitSchema: mongoose.model("Unit", UnitSchema) };
