@@ -1,6 +1,11 @@
 const express = require("express");
 const { userAuthorization } = require("../middleware/authorization_middleware");
-const { addUnit, getUnits, getUnitById } = require("../model/unit/Unit_model");
+const {
+  addUnit,
+  getUnits,
+  getUnitById,
+  updatePrefs,
+} = require("../model/unit/Unit_model");
 const router = express.Router();
 
 router.all("/", (req, res, next) => {
@@ -84,6 +89,28 @@ router.get("/unit/:_id", userAuthorization, async (req, res) => {
     return res.json({
       status: "success",
       result,
+    });
+  } catch (error) {
+    res.json({ status: "error", message: error.message });
+  }
+});
+
+// *Update Preferences
+router.put("/unit/:_id", userAuthorization, async (req, res) => {
+  try {
+    const { pref, prefAddedBy } = req.body;
+
+    const { _id } = req.params;
+    const result = await updatePrefs({ _id, pref, prefAddedBy });
+    if (result._id) {
+      return res.json({
+        status: "success",
+        message: "Owner preferences has been updated!",
+      });
+    }
+    res.json({
+      status: "success",
+      message: "Unable to update owner preferences...",
     });
   } catch (error) {
     res.json({ status: "error", message: error.message });

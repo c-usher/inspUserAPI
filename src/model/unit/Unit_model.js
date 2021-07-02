@@ -37,8 +37,27 @@ const getUnitById = (_id, clientId) => {
   });
 };
 
+const updatePrefs = ({ _id, pref, prefAddedBy }) => {
+  return new Promise((resolve, reject) => {
+    try {
+      UnitSchema.findOneAndUpdate(
+        { _id },
+        {
+          $push: { ownerPrefs: { pref, prefAddedBy } },
+        },
+        { new: true }
+      )
+        .then((data) => resolve(data))
+        .catch((error) => reject(error));
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 module.exports = {
   addUnit,
   getUnits,
   getUnitById,
+  updatePrefs,
 };
