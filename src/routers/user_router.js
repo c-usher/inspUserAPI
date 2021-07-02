@@ -26,19 +26,19 @@ router.all("/", (req, res, next) => {
   next();
 });
 
-//Get user profile route
+//*Get user profile route
 router.get("/", userAuthorization, async (req, res) => {
   const _id = req.userId;
   const userProfile = await getUserById(_id);
   res.json({ user: userProfile });
 });
 
-//Create new user route
+//*Create new user route
 router.post("/create", async (req, res) => {
   const { name, phone, email, password } = req.body;
 
   try {
-    //HashPass
+    //*HashPass
     const hashedPass = await hashPassword(password);
     const newUserObj = {
       name,
@@ -55,7 +55,7 @@ router.post("/create", async (req, res) => {
   }
 });
 
-//Login user route
+//*Login user route
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -86,7 +86,7 @@ router.post("/login", async (req, res) => {
   });
 });
 
-//Reset password route
+//*Reset password route
 router.post("/reset-password", resetPassReqValidation, async (req, res) => {
   const { email } = req.body;
 
@@ -111,7 +111,7 @@ router.post("/reset-password", resetPassReqValidation, async (req, res) => {
   });
 });
 
-//Password update route
+//*Password update route
 router.patch("/reset-password", updatePassValidation, async (req, res) => {
   const { email, pin, newPassword } = req.body;
   const getPin = await getPinByEmail(email, pin);
@@ -142,7 +142,7 @@ router.patch("/reset-password", updatePassValidation, async (req, res) => {
   res.json({ status: "error", message: "Unable to update your password!" });
 });
 
-//Logout route
+//*Logout route
 router.delete("/logout", userAuthorization, async (req, res) => {
   const { authorization } = req.headers;
   const _id = req.userId;

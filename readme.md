@@ -11,5 +11,5 @@
 
 ### Unit Routes
 
-    /unit - All
-    /tokens - Get
+    /unit - POST
+    /unit - GET
