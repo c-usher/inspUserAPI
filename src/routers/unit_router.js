@@ -145,7 +145,6 @@ router.put("/unit/note/:_id", userAuthorization, async (req, res) => {
 router.put("/unit/note-status/:_id", userAuthorization, async (req, res) => {
   try {
     const { _id } = req.params;
-    console.log(_id);
 
     const result = await updateStatusNote({ _id });
     if (result._id) {

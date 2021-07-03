@@ -77,27 +77,13 @@ const addNote = ({ _id, note, noteAddedBy }) => {
 
 const updateStatusNote = ({ _id }) => {
   return new Promise((resolve, reject) => {
-    const test = UnitSchema.find(
-      {
-        notes: {
-          $elemMatch: {
-            _id: _id,
-            noteStatus: false,
-          },
-        },
-      },
-      {
-        noteStatus: true,
-      },
-      { new: true }
-    );
-
     try {
       UnitSchema.findOneAndUpdate(
         {
           notes: {
             $elemMatch: {
               _id: _id,
+              noteStatus: false,
             },
           },
         },
