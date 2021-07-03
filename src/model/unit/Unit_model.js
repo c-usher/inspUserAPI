@@ -55,7 +55,7 @@ const updatePrefs = ({ _id, pref, prefAddedBy }) => {
   });
 };
 
-const updateNotes = ({ _id, note, noteAddedBy }) => {
+const addNote = ({ _id, note, noteAddedBy }) => {
   return new Promise((resolve, reject) => {
     try {
       UnitSchema.findOneAndUpdate(
@@ -75,10 +75,49 @@ const updateNotes = ({ _id, note, noteAddedBy }) => {
   });
 };
 
+const updateStatusNote = ({ _id }) => {
+  return new Promise((resolve, reject) => {
+    const test = UnitSchema.find(
+      {
+        notes: {
+          $elemMatch: {
+            _id: _id,
+            noteStatus: false,
+          },
+        },
+      },
+      {
+        noteStatus: true,
+      },
+      { new: true }
+    );
+
+    try {
+      UnitSchema.findOneAndUpdate(
+        {
+          notes: {
+            $elemMatch: {
+              _id: _id,
+            },
+          },
+        },
+        {
+          "notes.$.noteStatus": true,
+        },
+        { new: true }
+      )
+        .then((data) => resolve(data))
+        .catch((error) => reject(error));
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 module.exports = {
   addUnit,
   getUnits,
   getUnitById,
   updatePrefs,
-  updateNotes,
+  addNote,
+  updateStatusNote,
 };

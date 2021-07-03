@@ -5,7 +5,8 @@ const {
   getUnits,
   getUnitById,
   updatePrefs,
-  updateNotes,
+  addNote,
+  updateStatusNote,
 } = require("../model/unit/Unit_model");
 const router = express.Router();
 
@@ -86,7 +87,6 @@ router.get("/unit/:_id", userAuthorization, async (req, res) => {
     const { _id } = req.params;
     const clientId = req.userId;
     const result = await getUnitById(_id, clientId);
-
     return res.json({
       status: "success",
       result,
@@ -96,6 +96,7 @@ router.get("/unit/:_id", userAuthorization, async (req, res) => {
   }
 });
 
+// *Preferences here
 // *Update Preferences
 router.put("/unit/prefs/:_id", userAuthorization, async (req, res) => {
   try {
@@ -118,13 +119,14 @@ router.put("/unit/prefs/:_id", userAuthorization, async (req, res) => {
   }
 });
 
+// *Notes Here
 // *Update Notes
 router.put("/unit/note/:_id", userAuthorization, async (req, res) => {
   try {
     const { note, noteAddedBy } = req.body;
-
     const { _id } = req.params;
-    const result = await updateNotes({ _id, note, noteAddedBy });
+
+    const result = await addNote({ _id, note, noteAddedBy });
     if (result._id) {
       return res.json({
         status: "success",
@@ -132,7 +134,28 @@ router.put("/unit/note/:_id", userAuthorization, async (req, res) => {
       });
     }
     res.json({
-      status: "success",
+      status: "error",
+      message: "Unable to update unit notes...",
+    });
+  } catch (error) {
+    res.json({ status: "error", message: error.message });
+  }
+});
+
+router.put("/unit/note-status/:_id", userAuthorization, async (req, res) => {
+  try {
+    const { _id } = req.params;
+    console.log(_id);
+
+    const result = await updateStatusNote({ _id });
+    if (result._id) {
+      return res.json({
+        status: "success",
+        message: "Unit notes has been updated!",
+      });
+    }
+    res.json({
+      status: "error",
       message: "Unable to update unit notes...",
     });
   } catch (error) {
