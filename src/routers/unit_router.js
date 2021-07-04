@@ -157,7 +157,7 @@ router.patch("/unit/note-status/:_id", userAuthorization, async (req, res) => {
     }
     res.json({
       status: "error",
-      message: "Unable to update unit notes...",
+      message: "Unable to update unit note.",
     });
   } catch (error) {
     res.json({ status: "error", message: error.message });
@@ -170,7 +170,7 @@ router.patch("/unit/note/:_id", userAuthorization, async (req, res) => {
     const { _id } = req.params;
 
     const result = await delNote({ _id });
-    if (result) {
+    if (result._id) {
       return res.json({
         status: "success",
         message: "Unit note has been deleted.",

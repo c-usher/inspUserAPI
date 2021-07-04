@@ -50,7 +50,7 @@
 | 4   | `/units/unit/prefs/{id}` | PUT   |   YES   | Creates a new preference        |
 | 5   | `/units/unit/note/{id}`  | PUT   |   YES   | Creates a new note              |
 | 6   | `/unit/note-status/{id}` | PATCH |   YES   | Updates the note status to true |
-| 7   | `/unit/note-status/{id}` | PUT   |   YES   | Removes the done note           |
+| 7   | `/unit/note/{id}`        | PATCH |   YES   | Removes the done note           |
 
 <br/>
 <br/>
@@ -73,6 +73,5 @@
 ### TODO:
 
 - Add logic for when to change the status of the note.
-- Add logic for when to $pull the true status note.
 - Add Link to working Inspections Application.
 - Add a section for technology/packages used.
