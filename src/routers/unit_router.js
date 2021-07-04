@@ -1,6 +1,9 @@
 const express = require("express");
 const { userAuthorization } = require("../middleware/authorization_middleware");
 const {
+  newUnitValidation,
+} = require("../middleware/form_validation_middleware");
+const {
   addUnit,
   getUnits,
   getUnitById,
@@ -16,7 +19,7 @@ router.all("/", (req, res, next) => {
 });
 
 //* Create Unit
-router.post("/", userAuthorization, async (req, res) => {
+router.post("/", newUnitValidation, userAuthorization, async (req, res) => {
   try {
     const {
       unitAddedBy,
