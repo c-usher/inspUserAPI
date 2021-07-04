@@ -165,15 +165,20 @@ router.patch("/unit/note-status/:_id", userAuthorization, async (req, res) => {
 });
 
 // *Deletes the note.
-router.put("/unit/note-status/:_id", userAuthorization, async (req, res) => {
+router.patch("/unit/note/:_id", userAuthorization, async (req, res) => {
   try {
     const { _id } = req.params;
 
     const result = await delNote({ _id });
-
+    if (result) {
+      return res.json({
+        status: "success",
+        message: "Unit note has been deleted.",
+      });
+    }
     return res.json({
-      status: "success",
-      message: "Unit note has been deleted.",
+      status: "error",
+      message: "Unit note was not deleted.",
     });
   } catch (error) {
     res.json({ status: "error", message: error.message });
