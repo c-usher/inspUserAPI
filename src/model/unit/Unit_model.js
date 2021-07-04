@@ -99,6 +99,32 @@ const updateStatusNote = ({ _id }) => {
     }
   });
 };
+
+const delNote = ({ _id }) => {
+  return new Promise((resolve, reject) => {
+    try {
+      UnitSchema.findOneAndUpdate(
+        {
+          notes: {
+            $elemMatch: {
+              _id: _id,
+              noteStatus: true,
+            },
+          },
+        },
+        {
+          $pull: { notes: { _id: _id } },
+        },
+        { new: true }
+      )
+        .then((data) => resolve(data))
+        .catch((error) => reject(error));
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 module.exports = {
   addUnit,
   getUnits,
@@ -106,4 +132,5 @@ module.exports = {
   updatePrefs,
   addNote,
   updateStatusNote,
+  delNote,
 };

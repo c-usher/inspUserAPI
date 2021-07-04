@@ -7,6 +7,7 @@ const {
   updatePrefs,
   addNote,
   updateStatusNote,
+  delNote,
 } = require("../model/unit/Unit_model");
 const router = express.Router();
 
@@ -142,7 +143,8 @@ router.put("/unit/note/:_id", userAuthorization, async (req, res) => {
   }
 });
 
-router.put("/unit/note-status/:_id", userAuthorization, async (req, res) => {
+// *Changes note status to true.
+router.patch("/unit/note-status/:_id", userAuthorization, async (req, res) => {
   try {
     const { _id } = req.params;
 
@@ -162,4 +164,19 @@ router.put("/unit/note-status/:_id", userAuthorization, async (req, res) => {
   }
 });
 
+// *Deletes the note.
+router.put("/unit/note-status/:_id", userAuthorization, async (req, res) => {
+  try {
+    const { _id } = req.params;
+
+    const result = await delNote({ _id });
+
+    return res.json({
+      status: "success",
+      message: "Unit note has been deleted.",
+    });
+  } catch (error) {
+    res.json({ status: "error", message: error.message });
+  }
+});
 module.exports = router;
