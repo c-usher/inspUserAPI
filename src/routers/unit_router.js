@@ -2,6 +2,8 @@ const express = require("express");
 const { userAuthorization } = require("../middleware/authorization_middleware");
 const {
   newUnitValidation,
+  newPrefValidation,
+  newNoteValidation,
 } = require("../middleware/form_validation_middleware");
 const {
   addUnit,
@@ -100,51 +102,60 @@ router.get("/unit/:_id", userAuthorization, async (req, res) => {
   }
 });
 
-// *Preferences here
-// *Update Preferences
-router.put("/unit/prefs/:_id", userAuthorization, async (req, res) => {
-  try {
-    const { pref, prefAddedBy } = req.body;
+// *Create Preferences
+router.put(
+  "/unit/prefs/:_id",
+  newPrefValidation,
+  userAuthorization,
+  async (req, res) => {
+    try {
+      const { pref, prefAddedBy } = req.body;
 
-    const { _id } = req.params;
-    const result = await updatePrefs({ _id, pref, prefAddedBy });
-    if (result._id) {
-      return res.json({
+      const { _id } = req.params;
+      const result = await updatePrefs({ _id, pref, prefAddedBy });
+      if (result._id) {
+        return res.json({
+          status: "success",
+          message: "Owner preferences has been updated!",
+        });
+      }
+      res.json({
         status: "success",
-        message: "Owner preferences has been updated!",
+        message: "Unable to update owner preferences...",
       });
+    } catch (error) {
+      res.json({ status: "error", message: error.message });
     }
-    res.json({
-      status: "success",
-      message: "Unable to update owner preferences...",
-    });
-  } catch (error) {
-    res.json({ status: "error", message: error.message });
   }
-});
+);
 
-// *Notes Here
-// *Update Notes
-router.put("/unit/note/:_id", userAuthorization, async (req, res) => {
-  try {
-    const { note, noteAddedBy } = req.body;
-    const { _id } = req.params;
+// *Create Note
+router.put(
+  "/unit/note/:_id",
+  newNoteValidation,
+  userAuthorization,
+  async (req, res) => {
+    try {
+      const { note, noteAddedBy, noteStatus } = req.body;
+      const { _id } = req.params;
 
-    const result = await addNote({ _id, note, noteAddedBy });
-    if (result._id) {
-      return res.json({
-        status: "success",
-        message: "Unit notes has been updated!",
+      const result = await addNote({ _id, note, noteAddedBy, noteStatus });
+      console.log(result);
+      if (result._id) {
+        return res.json({
+          status: "success",
+          message: "Unit notes has been updated!",
+        });
+      }
+      res.json({
+        status: "error",
+        message: "Unable to update unit notes...",
       });
+    } catch (error) {
+      res.json({ status: "error", message: error.message });
     }
-    res.json({
-      status: "error",
-      message: "Unable to update unit notes...",
-    });
-  } catch (error) {
-    res.json({ status: "error", message: error.message });
   }
-});
+);
 
 // *Changes note status to true.
 router.patch("/unit/note-status/:_id", userAuthorization, async (req, res) => {

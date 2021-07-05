@@ -11,18 +11,6 @@ const bool = Joi.boolean();
 const shortStr = Joi.string().min(2).max(50);
 const longStr = Joi.string().min(2).max(1000);
 
-//! \/ DELETE THIS !! \/
-//! const unitAddedBy = Joi.string().alphanum().min(2).max(50).required();
-//! const cleanStatus = Joi.boolean().required();
-//! const inHouseStatus = Joi.boolean().required();
-//! const managedStatus = Joi.boolean().required();
-//! const note = Joi.string().min(2).max(1000).required();
-//! const noteAddedBy = Joi.string().alphanum().min(2).max(50).required();
-//! const noteStatus = Joi.boolean().required();
-//! const prefAddedBy = Joi.string().alphanum().min(2).max(50).required();
-//! const pref = Joi.string().min(2).max(1000).required();
-//! /\ DELETE THIS !! /\
-
 const resetPassReqValidation = (req, res, next) => {
   const schema = Joi.object({ email });
 
@@ -45,7 +33,6 @@ const updatePassValidation = (req, res, next) => {
 
 const newUnitValidation = (req, res, next) => {
   const schema = Joi.object({
-    sender: "Prem",
     unitAddedBy: shortStr.required(),
     unitNum,
     cleanStatus: bool.required(),
@@ -59,15 +46,49 @@ const newUnitValidation = (req, res, next) => {
   });
 
   const value = schema.validate(req.body);
-  console.log(value);
 
   if (value.error) {
+    console.log(value.error);
     return res.json({ status: "error", message: value.error.message });
   }
   next();
 };
+
+const newNoteValidation = (req, res, next) => {
+  const schema = Joi.object({
+    note: longStr.required(),
+    noteAddedBy: shortStr.required(),
+    noteStatus: bool,
+  });
+
+  const value = schema.validate(req.body);
+
+  if (value.error) {
+    console.log(value.error);
+    return res.json({ status: "error", message: value.error.message });
+  }
+  next();
+};
+
+const newPrefValidation = (req, res, next) => {
+  const schema = Joi.object({
+    prefAddedBy: shortStr.required(),
+    pref: longStr.required(),
+  });
+
+  const value = schema.validate(req.body);
+
+  if (value.error) {
+    console.log(value.error);
+    return res.json({ status: "error", message: value.error.message });
+  }
+  next();
+};
+
 module.exports = {
   resetPassReqValidation,
   updatePassValidation,
   newUnitValidation,
+  newNoteValidation,
+  newPrefValidation,
 };

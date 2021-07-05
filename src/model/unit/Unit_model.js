@@ -55,7 +55,7 @@ const updatePrefs = ({ _id, pref, prefAddedBy }) => {
   });
 };
 
-const addNote = ({ _id, note, noteAddedBy }) => {
+const addNote = ({ _id, note, noteAddedBy, noteStatus }) => {
   return new Promise((resolve, reject) => {
     try {
       UnitSchema.findOneAndUpdate(
@@ -63,7 +63,7 @@ const addNote = ({ _id, note, noteAddedBy }) => {
 
         {
           noteStatus: false,
-          $push: { notes: { note, noteAddedBy } },
+          $push: { notes: { note, noteAddedBy, noteStatus } },
         },
         { new: true }
       )
