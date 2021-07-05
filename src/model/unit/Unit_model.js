@@ -37,7 +37,7 @@ const getUnitById = (_id, clientId) => {
   });
 };
 
-const updatePrefs = ({ _id, pref, prefAddedBy }) => {
+const addPrefs = ({ _id, pref, prefAddedBy }) => {
   return new Promise((resolve, reject) => {
     try {
       UnitSchema.findOneAndUpdate(
@@ -129,7 +129,7 @@ module.exports = {
   addUnit,
   getUnits,
   getUnitById,
-  updatePrefs,
+  addPrefs,
   addNote,
   updateStatusNote,
   delNote,

@@ -75,3 +75,4 @@
 - Add logic for when to change the status of the note.
 - Add Link to working Inspections Application.
 - Add a section for technology/packages used.
+- Add the ability to delete prefs

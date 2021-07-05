@@ -9,7 +9,7 @@ const {
   addUnit,
   getUnits,
   getUnitById,
-  updatePrefs,
+  addPrefs,
   addNote,
   updateStatusNote,
   delNote,
@@ -112,7 +112,7 @@ router.put(
       const { pref, prefAddedBy } = req.body;
 
       const { _id } = req.params;
-      const result = await updatePrefs({ _id, pref, prefAddedBy });
+      const result = await addPrefs({ _id, pref, prefAddedBy });
       if (result._id) {
         return res.json({
           status: "success",
