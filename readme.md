@@ -76,3 +76,5 @@
 - Add Link to working Inspections Application.
 - Add a section for technology/packages used.
 - Add the ability to delete prefs
+- Add robe count to the json object
+- Add a building key to the json object
