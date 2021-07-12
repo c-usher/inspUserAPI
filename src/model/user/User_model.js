@@ -30,7 +30,7 @@ const getUserById = (_id) => {
   return new Promise((resolve, reject) => {
     try {
       if (!_id) return false;
-      User.findOne({ _id }, (error, data) => {
+      UserSchema.findOne({ _id }, (error, data) => {
         if (error) {
           reject(error);
         } else {
