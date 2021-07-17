@@ -80,3 +80,5 @@
 - Add a building key to the json object
 - Add ability for user to change rental status and managed status
 - Add ability to add which company is the property manager
+- Add inspected status
+- Add owner prefs to show unit page
