@@ -78,3 +78,5 @@
 - Add the ability to delete prefs
 - Add robe count to the json object
 - Add a building key to the json object
+- Add ability for user to change rental status and managed status
+- Add ability to add which company is the property manager

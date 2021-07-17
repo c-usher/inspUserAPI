@@ -29,6 +29,7 @@ router.post("/", newUnitValidation, userAuthorization, async (req, res) => {
       cleanStatus,
       inHouseStatus,
       managedStatus,
+      rentalStatus,
       note,
       noteAddedBy,
       noteStatus,
@@ -44,6 +45,7 @@ router.post("/", newUnitValidation, userAuthorization, async (req, res) => {
       cleanStatus,
       inHouseStatus,
       managedStatus,
+      rentalStatus,
       ownerPrefs: [
         {
           prefAddedBy,

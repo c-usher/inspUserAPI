@@ -35,6 +35,11 @@ const UnitSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
+  rentalStatus: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
   ownerPrefs: [
     {
       prefAddedAt: {
