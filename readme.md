@@ -82,3 +82,4 @@
 - Add ability to add which company is the property manager
 - Add inspected status
 - Add owner prefs to show unit page
+- Make date look nicer on show page
