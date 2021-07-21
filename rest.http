@@ -53,10 +53,54 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMDExQHRl
 
 
 ### Unit Routers
-
+### Get a single unit 
 GET http://localhost:3001/units/unit/60df8443aa2988e9d5a51204
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMDExQHRlc3QuY29tIiwiaWF0IjoxNjI2NDYzMTc4LCJleHAiOjE
 
-GET http://localhost:3001/units/
+### Gets all units
+GET http://localhost:3001/units/60df8443aa2988e9d5a51204
 Authorization: : 
+
+### Creates new unit
+POST http://localhost:3001/units/
+Authorization: 
+Content-Type: application/json
+
+{
+    "unitAddedBy": "Cody Usher",
+    "unitNum" : "A901",
+    "cleanStatus": true,
+    "inHouseStatus": true,
+    "managedStatus": true,
+    "rentalStatus" : true,
+    "note": "this is a note",
+    "noteAddedBy": "Cody Usher",
+    "noteStatus": true,
+    "prefAddedBy": "Cody Usher",
+    "pref": "80 Degrees"
+}
+
+### Creates a new note
+PUT http://localhost:3001/units/unit/note/60df8443aa2988e9d5a51204
+Authorization: 
+Content-Type: application/json
+{
+    "note": "this is a pref number 7",
+    "noteAddedBy": "jack"
+}
+
+### Updates note status
+PATH http://localhost:3001/unit/note-status/60f35b0466957a8c0cdec48e
+
+### Removes done note
+PATH http://localhost:3001/unit/note/60f35b0466957a8c0cdec48e
+
+### Creates a new pref
+PUT http://localhost:3001/units/unit/prefs/60df8443aa2988e9d5a51204
+Authorization: 
+Content-Type: application/json
+{
+    "pref": "this is a pref number 7",
+    "prefAddedBy": "jack"
+}
 
