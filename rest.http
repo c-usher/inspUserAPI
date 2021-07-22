@@ -90,10 +90,10 @@ Content-Type: application/json
 }
 
 ### Updates note status
-PATH http://localhost:3001/unit/note-status/60f35b0466957a8c0cdec48e
+PATCH http://localhost:3001/unit/note-status/60f35b0466957a8c0cdec48e
 
 ### Removes done note
-PATH http://localhost:3001/unit/note/60f35b0466957a8c0cdec48e
+PATCH http://localhost:3001/unit/note/60f35b0466957a8c0cdec48e
 
 ### Creates a new pref
 PUT http://localhost:3001/units/unit/prefs/60df8443aa2988e9d5a51204
