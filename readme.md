@@ -83,3 +83,4 @@
 - Add inspected status
 - Add owner prefs to show unit page
 - Make date look nicer on show page
+- Remake the add unit form
