@@ -10,6 +10,7 @@ const unitNum = Joi.string().alphanum().min(3).max(5).required();
 const bool = Joi.boolean();
 const shortStr = Joi.string().min(2).max(50);
 const longStr = Joi.string().min(2).max(1000);
+const date = Joi.date();
 
 const resetPassReqValidation = (req, res, next) => {
   const schema = Joi.object({ email });
