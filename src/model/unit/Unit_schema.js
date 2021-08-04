@@ -40,6 +40,11 @@ const UnitSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
+  inspectedStatus: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
   ownerPrefs: [
     {
       prefAddedAt: {

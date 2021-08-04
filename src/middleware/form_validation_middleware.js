@@ -40,6 +40,7 @@ const newUnitValidation = (req, res, next) => {
     inHouseStatus: bool.required(),
     managedStatus: bool.required(),
     rentalStatus: bool.required(),
+    inspectedStatus: bool.required(),
     note: longStr.required(),
     noteAddedBy: shortStr.required(),
     noteStatus: bool.required(),
