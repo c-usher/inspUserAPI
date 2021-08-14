@@ -55,10 +55,14 @@ router.post("/create", async (req, res) => {
     };
 
     const result = await insertUser(newUserObj);
-    res.json({ message: "new user created!", result });
+    res.json({ status: "success", message: "new user created!", result });
   } catch (error) {
     console.log(error);
-    res.json({ status: "error", message: error.message });
+    let message = "Unable to create new user at this time!";
+    if (error.message.includes("duplicate key error collection")) {
+      message = "This email already has an account";
+    }
+    res.json({ status: "error", message });
   }
 });
 
