@@ -6,6 +6,7 @@ const {
   getUserById,
   updatePassword,
   storeUserRefreshJWT,
+  verifyUser,
 } = require("../model/user/User_model");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt_helper");
 const { createAccessJWT, createRefreshJWT } = require("../helpers/jwt_helper");
@@ -42,6 +43,33 @@ router.get("/", userAuthorization, async (req, res) => {
   });
 });
 
+//*Verify user email route
+router.patch("/verify", async (req, res) => {
+  try {
+    const { _id, email } = req.body;
+
+    const result = await verifyUser(_id, email);
+
+    if (result && result.id) {
+      return res.json({
+        status: "success",
+        message: "Your account has been verified and activated!",
+      });
+    }
+
+    return res.json({
+      status: "error",
+      message: "Request Invalid!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      status: "error",
+      message: "Request Invalid!",
+    });
+  }
+});
+
 //*Create new user route
 router.post("/create", newUserValidation, async (req, res) => {
   const { name, phone, email, password } = req.body;
@@ -62,7 +90,7 @@ router.post("/create", newUserValidation, async (req, res) => {
     await emailProcessor({
       email,
       type: "user-confirmation",
-      verifyLink: verifyUrl + result._id,
+      verifyLink: `${verifyUrl}${result._id}/${result.email}`,
     });
 
     res.json({ status: "success", message: "new user created!", result });
