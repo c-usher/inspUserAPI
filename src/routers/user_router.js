@@ -19,8 +19,10 @@ const { emailProcessor } = require("../helpers/email_helper");
 const {
   resetPassReqValidation,
   updatePassValidation,
+  newUserValidation,
 } = require("../middleware/form_validation_middleware");
 const { delJWT } = require("../helpers/redis_helper");
+const verifyUrl = "http://localhost:3000/verify/";
 
 router.all("/", (req, res, next) => {
   next();
@@ -41,7 +43,7 @@ router.get("/", userAuthorization, async (req, res) => {
 });
 
 //*Create new user route
-router.post("/create", async (req, res) => {
+router.post("/create", newUserValidation, async (req, res) => {
   const { name, phone, email, password } = req.body;
 
   try {
@@ -55,6 +57,14 @@ router.post("/create", async (req, res) => {
     };
 
     const result = await insertUser(newUserObj);
+
+    //Sends the confirmation email
+    await emailProcessor({
+      email,
+      type: "user-confirmation",
+      verifyLink: verifyUrl + result._id,
+    });
+
     res.json({ status: "success", message: "new user created!", result });
   } catch (error) {
     console.log(error);

@@ -7,6 +7,7 @@ const email = Joi.string().email({
 const pin = Joi.number().min(100000).max(999999);
 const newPassword = Joi.string().alphanum().min(3).max(30);
 const unitNum = Joi.string().alphanum().min(3).max(5).required();
+const phoneNum = Joi.number().min(1000000001).max(90000000009).required();
 const bool = Joi.boolean();
 const shortStr = Joi.string().min(2).max(50);
 const longStr = Joi.string().min(2).max(1000);
@@ -88,10 +89,28 @@ const newPrefValidation = (req, res, next) => {
   next();
 };
 
+const newUserValidation = (req, res, next) => {
+  const schema = Joi.object({
+    name: shortStr.required(),
+    phone: phoneNum,
+    email: shortStr.required(),
+    password: shortStr.required(),
+  });
+
+  const value = schema.validate(req.body);
+
+  if (value.error) {
+    console.log(value.error);
+    return res.json({ status: "error", message: value.error.message });
+  }
+  next();
+};
+
 module.exports = {
   resetPassReqValidation,
   updatePassValidation,
   newUnitValidation,
   newNoteValidation,
   newPrefValidation,
+  newUserValidation,
 };

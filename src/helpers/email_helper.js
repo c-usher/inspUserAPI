@@ -29,7 +29,7 @@ const send = (info) => {
   });
 };
 
-const emailProcessor = ({ email, pin, type }) => {
+const emailProcessor = ({ email, pin, type, verifyLink = "" }) => {
   let info = "";
   switch (type) {
     case "request-new-password":
@@ -51,10 +51,20 @@ const emailProcessor = ({ email, pin, type }) => {
         text: "You password has been updated!", // plain text body
         html: "You password has been updated!", // html body
       };
+    case "user-confirmation":
+      info = {
+        from: '"Inspection Co." <ollie.leuschke@ethereal.email>', // sender address
+        to: email, // list of receivers
+        subject: "Inspection Co. Verification", // Subject line
+        text: "Click the link to verify you Inspection Co. account!", // plain text body
+        html: `<p>Click the link to verify you Inspection Co. account!</p>
+        <p>${verifyLink}</p>`, // html body
+      };
 
       send(info);
 
       break;
+
     default:
       break;
   }
