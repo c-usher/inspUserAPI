@@ -114,6 +114,13 @@ router.post("/login", async (req, res) => {
 
   const user = await getUserByEmail(email);
 
+  if (!user.isVerified) {
+    return res.json({
+      status: "error",
+      message: "Your account is not verified!",
+    });
+  }
+
   const passFromDb = user && user._id ? user.password : null;
 
   if (!passFromDb)

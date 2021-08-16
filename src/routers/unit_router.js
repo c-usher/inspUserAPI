@@ -78,6 +78,7 @@ router.post("/", newUnitValidation, userAuthorization, async (req, res) => {
 router.get("/", userAuthorization, async (req, res) => {
   try {
     const clientId = req.userId;
+
     const result = await getUnits(clientId);
 
     return res.json({
