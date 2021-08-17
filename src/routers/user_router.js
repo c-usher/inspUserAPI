@@ -156,7 +156,7 @@ router.post("/reset-password", resetPassReqValidation, async (req, res) => {
       type: "request-new-password",
     });
     return res.json({
-      status: "Success",
+      status: "success",
       message: "A reset pin is on its way!",
     });
   }
@@ -207,12 +207,12 @@ router.delete("/logout", userAuthorization, async (req, res) => {
 
   if (result._id) {
     return res.json({
-      success: "success",
+      status: "success",
       message: "Logged out successfully!",
     });
   }
   res.json({
-    success: "error",
+    status: "error",
     message: "Unable to log you out...",
   });
 });
