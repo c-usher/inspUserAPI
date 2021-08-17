@@ -155,15 +155,11 @@ router.post("/reset-password", resetPassReqValidation, async (req, res) => {
       pin: setPin.pin,
       type: "request-new-password",
     });
-    return res.json({
-      status: "success",
-      message: "A reset pin is on its way!",
-    });
   }
 
   res.json({
-    status: "error",
-    message: "Unable to send reset pin at this time.",
+    status: "success",
+    message: "A reset email is on the way!",
   });
 });
 
