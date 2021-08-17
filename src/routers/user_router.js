@@ -167,7 +167,7 @@ router.post("/reset-password", resetPassReqValidation, async (req, res) => {
 router.patch("/reset-password", updatePassValidation, async (req, res) => {
   const { email, pin, newPassword } = req.body;
   const getPin = await getPinByEmail(email, pin);
-  if (getPin._id) {
+  if (getPin?._id) {
     const dbPinDate = getPin.addedAt;
     const expTime = 1;
 

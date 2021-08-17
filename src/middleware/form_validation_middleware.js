@@ -5,7 +5,7 @@ const email = Joi.string().email({
   tlds: { allow: ["com", "net"] },
 });
 const pin = Joi.number().min(100000).max(999999);
-const newPassword = Joi.string().alphanum().min(3).max(30);
+const newPassword = Joi.string().min(3).max(30);
 const unitNum = Joi.string().alphanum().min(3).max(5).required();
 const phoneNum = Joi.number().min(1000000001).max(90000000009).required();
 const bool = Joi.boolean();
