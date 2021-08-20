@@ -49,7 +49,7 @@ Content-Type: application/json
 
 ### Logout endpoint
 DELETE http://localhost:3001/user/logout 
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwiaWF0IjoxNjI5NDMyMzY5LCJleHAiOjE2Mjk0MzMyNjl9.cavw2eSwjis-1LwzXJGldL7cwykAxhh0wlxYEEm9PfU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwiaWF0IjoxNjI5NDMzMDkyLCJleHAiOjE2Mjk0MzM5OTJ9.mVKRRIG3aIqeHX-2dXY0n9L_M73O_79HItC09x7bM30
 
 
 ### Unit Routers
