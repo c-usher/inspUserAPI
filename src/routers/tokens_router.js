@@ -27,8 +27,6 @@ router.get("/", async (req, res, next) => {
         userProf._id.toString()
       );
 
-      //*delete old token from redis
-
       return res.json({ status: "success", accessJWT });
     }
   }

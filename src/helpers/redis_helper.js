@@ -38,6 +38,7 @@ const delJWT = (key) => {
     console.log(error);
   }
 };
+
 module.exports = {
   setJWT,
   getJWT,

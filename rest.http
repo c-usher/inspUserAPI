@@ -48,8 +48,8 @@ Content-Type: application/json
 }
 
 ### Logout endpoint
-DELETE http://localhost:3001/user/logout
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMDExQHRlc3QuY29tIiwiaWF0IjoxNjI2NDYzMTc4LCJleHAiOjE2MjY0NjQwNzh9.708L6faUu7fWNnOiYHjbgkQg2jT1VlcyqGGhxxkZGQg
+DELETE http://localhost:3001/user/logout 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwiaWF0IjoxNjI5NDMyMzY5LCJleHAiOjE2Mjk0MzMyNjl9.cavw2eSwjis-1LwzXJGldL7cwykAxhh0wlxYEEm9PfU
 
 
 ### Unit Routers
