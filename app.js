@@ -73,6 +73,11 @@ app.use((error, req, res, next) => {
   handleError(error, res);
 });
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 app.listen(PORT, () => {
   console.log(`Listening on port:${PORT}`);
 });
