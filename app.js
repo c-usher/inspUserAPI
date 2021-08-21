@@ -87,7 +87,7 @@ app.use((req, res, next) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "source", "routers", "app.js"));
+  res.sendFile(path.resolve(__dirname, "app.js"));
 });
 
 app.listen(PORT, () => {
