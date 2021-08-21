@@ -83,10 +83,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "app.js"));
-});
-
 app.listen(PORT, () => {
   console.log(`Listening on port:${PORT}`);
 });
