@@ -36,9 +36,6 @@ app.use(morgan("tiny"));
 //   //set static folder
 //   app.use(express.static("client/build"));
 // }
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "source", "routers", "app.js"));
-});
 
 // if (process.env.NODE_ENV !== "production") {
 //   const mDb = mongoose.connection;
@@ -84,6 +81,10 @@ app.use((error, req, res, next) => {
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   next();
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "src", "routers", "app.js"));
 });
 
 app.listen(PORT, () => {
